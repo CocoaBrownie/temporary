@@ -2,16 +2,16 @@
 
 
 ## WORDPRESS設定ファイルのパス
-WP-CONF_PATH='/var/www/html/wp-config.php'
+WP_CONF_PATH='/var/www/html/wp-config.php'
 
 ## 自分に割り当てられたPublicIPを取得
 PUBLIC_IP="'`curl -s http://169.254.169.254/latest/meta-data/public-ipv4/`'"
 
 ## DB情報取得
-DB_NAME=`grep "^define('DB_NAME" ${WP-CONF_PATH} | sed -e "s/define('DB_NAME', '\(.*\)');/\1/" | tr -d "\r"`
-DB_USER=`grep "^define('DB_USER" ${WP-CONF_PATH} | sed -e "s/define('DB_USER', '\(.*\)');/\1/" | tr -d "\r"`
-DB_PASSWORD=`grep "^define('DB_PASSWORD" ${WP-CONF_PATH} | sed -e "s/define('DB_PASSWORD', '\(.*\)');/\1/" | tr -d "\r"`
-DB_HOST=`grep "^define('DB_HOST" ${WP-CONF_PATH} | sed -e "s/define('DB_HOST', '\(.*\)');/\1/" | tr -d "\r"`
+DB_NAME=`grep "^define('DB_NAME" ${WP_CONF_PATH} | sed -e "s/define('DB_NAME', '\(.*\)');/\1/" | tr -d "\r"`
+DB_USER=`grep "^define('DB_USER" ${WP_CONF_PATH} | sed -e "s/define('DB_USER', '\(.*\)');/\1/" | tr -d "\r"`
+DB_PASSWORD=`grep "^define('DB_PASSWORD" ${WP_CONF_PATH} | sed -e "s/define('DB_PASSWORD', '\(.*\)');/\1/" | tr -d "\r"`
+DB_HOST=`grep "^define('DB_HOST" ${WP_CONF_PATH} | sed -e "s/define('DB_HOST', '\(.*\)');/\1/" | tr -d "\r"`
 
 
 ## DB接続
