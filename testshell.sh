@@ -32,7 +32,7 @@ echo DB_HOST       ${DB_HOST} >> ${LOG_PATH}
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'siteurl';" >> ${LOG_PATH}
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'home';" >> ${LOG_PATH}
 
-mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = http://${PUBLIC_IP} where option_name = 'siteurl';" >> ${LOG_PATH}
+mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = ${PUBLIC_IP} where option_name = 'siteurl';" >> ${LOG_PATH}
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = ${PUBLIC_IP} where option_name = 'home';" >> ${LOG_PATH}
 
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'siteurl';" >> ${LOG_PATH}
