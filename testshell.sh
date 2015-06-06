@@ -6,7 +6,7 @@ WP_CONF_PATH='/var/www/html/wp-config.php'
 
 ## LOGファイルのパス
 LOG_NAME='wp-ip-reset.log'
-LOG_PATH="$(pwd)/${LOG_NAME}"
+LOG_PATH=$(cd $(dirname $0) && pwd)/${LOG_NAME}
 
 # 自分に割り当てられたPublicIPを取得
 PUBLIC_IP="'http://`curl -s http://169.254.169.254/latest/meta-data/public-ipv4/`'"
