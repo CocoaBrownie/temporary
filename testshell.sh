@@ -9,7 +9,7 @@ LOG_NAME='wp-ip-reset.log'
 LOG_PATH=$(cd $(dirname $0) && pwd)/${LOG_NAME}
 
 # 自分に割り当てられたPublicIPを取得
-PUBLIC_IP="'http://`curl -s http://169.254.169.254/latest/meta-data/public-ipv4/`'"
+PUBLIC_IP="'http://`curl -s http://169.254.169.254/latest/meta-data/public-ipv4/`/WP/'"
 
 ## DB情報取得
 DB_NAME=`grep "^define('DB_NAME" ${WP_CONF_PATH} | sed -e "s/define('DB_NAME', '\(.*\)');/\1/" | tr -d "\r"`
@@ -32,8 +32,8 @@ echo DB_HOST       ${DB_HOST} >> ${LOG_PATH}
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'siteurl';" >> ${LOG_PATH}
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'home';" >> ${LOG_PATH}
 
-mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = ${PUBLIC_IP}/WP/ where option_name = 'siteurl';" >> ${LOG_PATH}
-mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = ${PUBLIC_IP}/WP/ where option_name = 'home';" >> ${LOG_PATH}
+mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = ${PUBLIC_IP} where option_name = 'siteurl';" >> ${LOG_PATH}
+mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"update wp_options set option_value = ${PUBLIC_IP} where option_name = 'home';" >> ${LOG_PATH}
 
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'siteurl';" >> ${LOG_PATH}
 mysql -h ${DB_HOST} -D ${DB_NAME} -u ${DB_USER} -p${DB_PASSWORD} --connect_timeout=5 -e"select * from wp_options where option_name = 'home';" >> ${LOG_PATH}
